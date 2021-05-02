@@ -4,10 +4,12 @@ var cityInput = document.querySelector("#city");
 var cityForm = document.querySelector("#city-search-form");
 var pastSearchButton = document.querySelector("#past-search-button");
 var weatherContainer = document.querySelector("#cur-weather-container");
-var citySearchInput = document.querySelector("searched-cty");
+var citySearchInput = document.querySelector("city-input");
 var forcastTitle = document.querySelector("#forecast");
 var forecastContainerEl = document.querySelector("#fiveday-container");
 var pastSearchButtonEl = document.querySelector("#past-search-buttons");
+
+
 
 
 
@@ -24,4 +26,4 @@ var pastSearchButtonEl = document.querySelector("#past-search-buttons");
 //     }
 //   });
 // });
-</script>
+// </script>
