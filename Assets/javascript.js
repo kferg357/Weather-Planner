@@ -10,13 +10,15 @@ var forecastContainerEl = document.querySelector("#fiveday-container");
 var pastSearchButtonEl = document.querySelector("#past-search-buttons");
 
 
+var savedSearch = function() {
+    localStorage.setItem("city", JSON.stringify(cities));
+};
+console.log('cities')
 
-
-
-// <script>
+ 
 // $(document).ready(function() {
 //   $.ajax({
-//     url: "https://maps.openweathermap.org/maps/2.0/weather/{op}/{z}/{x}/{y}&appid={API key}",
+//     url: "api.openweathermap.org/data/2.5/weather?q={city name},{state code}&appid={API key}",
 //     type: "GET",
 //     success: function(result) {
 //       console.log(result);
@@ -26,4 +28,3 @@ var pastSearchButtonEl = document.querySelector("#past-search-buttons");
 //     }
 //   });
 // });
-// </script>
