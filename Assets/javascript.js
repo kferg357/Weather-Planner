@@ -44,8 +44,8 @@ function weatherSearch() {
         .then(function (data) {
             return data.json();
         })
-        .then(function (data) {
-             
+        .then(function(data) {
+
             // List of all return data
             console.log(data);
 
@@ -60,7 +60,7 @@ function weatherSearch() {
          });
       
     
-}
+        }
 
 var savedSearch = function () {
     localStorage.setItem("city", JSON.stringify(cities));
