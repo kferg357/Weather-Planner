@@ -12,6 +12,7 @@ var forcastTitle = document.querySelector("#forecast");
 var forecastContainer = document.querySelector("#fiveday-container");
 var pastSearchButton = document.querySelector("#past-search-buttons");
 var API_KEY = '10e1f68a65cde5b6f69c3c18e862cb60';
+var forcastApiUrl = '4994e9dae0cfd4d7106550fa9a769e96';
 
 var city_search = '';
 // var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city_search}&appid=${API_KEY}`;
@@ -33,18 +34,22 @@ cityForm.addEventListener('submit', function(event) {
 function weatherSearch() {
 
     // test lat and lon
-    var lat = '42.279';
-    var lon = '-83.73';
+    var lat = '36.0726';
+    var lon = '-79.7920';
     
     var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}`
 
+    var forcastapiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${city name},${state code},${country code}&limit=${limit}&appid=${API key}'
+
     console.log(apiUrl);
+    console.log(forcastapiUrl);
 
     fetch(apiUrl)
         .then(function (data) {
             return data.json();
         })
         .then(function(data) {
+
 
             // List of all return data
             console.log(data);
@@ -58,6 +63,11 @@ function weatherSearch() {
     
              }*/
          });
+
+        //  fetch(forcastapiUrl)
+        //  .then(function(data) {
+        //      return data.json();
+        //  })
       
     
         }
@@ -85,3 +95,5 @@ console.log('city')
 //     }
 //   });
 // });
+
+// 4994e9dae0cfd4d7106550fa9a769e96
