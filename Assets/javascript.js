@@ -1,8 +1,4 @@
 
-
-
-
-
 var cityInput = document.querySelector("#city");
 var cityForm = document.querySelector("#city-search-form");
 var pastSearchButton = document.querySelector("#past-search-button");
@@ -56,9 +52,15 @@ function weatherSearch() {
 
             // List of Current Weather Info
             console.log(data.current)
-            console.log(`UVI: ${data.current.uvi}`);
+           
             // List of Forcast Data
             console.log(data.daily)
+            console.log(`UVI: ${data.current.uvi}`); 
+            console.log(`TEMP: ${data.current.temp}`);
+            console.log(`WIND_SPEED: ${data.current.wind_speed}`);
+            console.log(`HUMIDITY: ${data.current.humidity}`);
+            
+            
             /*for (var i =5; i < data.length; i++) {
     
              }*/
