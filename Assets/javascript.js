@@ -11,9 +11,11 @@ var API_KEY = '10e1f68a65cde5b6f69c3c18e862cb60';
 
 
 var city_search = '';
-// var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city_search}&appid=${API_KEY}`;
+ var requestUrl = `https://openweathermap.org/api/geocoding-api#direct_name`
 
-
+//make an api call to lon and lat extensions
+// pass the results to the weather search function
+//then lon and lat variables should work
 
 
 cityForm.addEventListener('submit', function(event) {
@@ -36,7 +38,7 @@ function weatherSearch() {
     var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}`
 
     console.log(apiUrl);
-    
+ 
 
     fetch(apiUrl)
         .then(function (data) {
@@ -74,6 +76,7 @@ function weatherSearch() {
 
 var savedSearch = function () {
     localStorage.setItem("city", JSON.stringify(cities));
+    localStorage.getItem()
 };
 console.log('city')
 
