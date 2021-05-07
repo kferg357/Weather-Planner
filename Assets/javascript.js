@@ -13,9 +13,7 @@ var API_KEY = '10e1f68a65cde5b6f69c3c18e862cb60';
 var city_search = '';
  var requestUrl = `https://openweathermap.org/api/geocoding-api#direct_name`
 
-//make an api call to lon and lat extensions
-// pass the results to the weather search function
-//then lon and lat variables should work
+
 
 
 cityForm.addEventListener('submit', function(event) {
@@ -23,25 +21,28 @@ cityForm.addEventListener('submit', function(event) {
     // console.log("submitting data");
     
     city_search = cityInput.value;
-    if(city){
-        coordinatesUrl(city_search);
-        get5Day(city);
-        cities.unshift({city});
-        cityInputEl.value = "";
-    } else{
-        alert("Please enter a City");
-    }
-    savedSearch();
-    pastSearchButton();
+    // if(city){
+    //     coordinatesUrl(city_search);
+    //     get5Day(city);
+    //     cities.unshift({city});
+    //     cityInputEl.value = "";
+    // } else{
+    //     alert("Please enter a City");
+    // }
+    
 
     weatherSearch()
 });
 
+var savedSearch = function () {
+    localStorage.setItem("city", JSON.stringify(cities));
+    // localStorage.getItem()
+}
 
 function weatherSearch() {
-    // var coordinates =  `https://openweathermap.org/api/geocoding-api#direct_name`
+    document.getElementByIds
+    
     var cityName = $("#city").val();
-
     var coordinatesUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`
     
     fetch(coordinatesUrl)
@@ -70,10 +71,11 @@ function weatherSearch() {
             return data.json();
         })
         .then(function(data) {
+            
 
 
             // List of all return data
-            console.log(data);
+            console.log(data.timezone)
 
             // List of Current Weather Info
             // console.log(data.current)
@@ -99,10 +101,8 @@ function weatherSearch() {
     });
         }
 
-var savedSearch = function () {
-    localStorage.setItem("city", JSON.stringify(cities));
-    localStorage.getItem()
-};
+
+
 console.log('city')
 
 
