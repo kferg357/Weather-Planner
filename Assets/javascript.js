@@ -40,7 +40,7 @@ var savedSearch = function () {
 }
 
 function weatherSearch() {
-    document.getElementByIds
+    
     
     var cityName = $("#city").val();
     var coordinatesUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`
@@ -54,6 +54,8 @@ function weatherSearch() {
 
         // List of all return data
         console.log(data, "coordinates")
+        document.getElementById("row").innerHTML = data[0].name;
+        // document.getElementById("five-day-forcast").innerHTML = 
 
     // test lat and lon
     var lat = data[0].lat;
@@ -80,12 +82,12 @@ function weatherSearch() {
             // List of Current Weather Info
             // console.log(data.current)
            
-            // // List of Forcast Data
-            // console.log(data.daily)
-            // console.log(`UVI: ${data.current.uvi}`); 
-            // console.log(`TEMP: ${data.current.temp}`);
-            // console.log(`WIND_SPEED: ${data.current.wind_speed}`);
-            // console.log(`HUMIDITY: ${data.current.humidity}`);
+            // List of Forcast Data
+            console.log(data.daily)
+            console.log(`UVI: ${data.current.uvi}`); 
+            console.log(`TEMP: ${data.current.temp}`);
+            console.log(`WIND_SPEED: ${data.current.wind_speed}`);
+            console.log(`HUMIDITY: ${data.current.humidity}`);
             
             
             /*for (var i =5; i < data.length; i++) {
