@@ -30,14 +30,33 @@ cityForm.addEventListener('submit', function(event) {
 
 
 function weatherSearch() {
+    // var coordinates =  `https://openweathermap.org/api/geocoding-api#direct_name`
+
+    var coordinatesUrl = `https://api.openweathermap.org/geo/1.0/direct?q=boston&appid=${API_KEY}`
+    
+    fetch(coordinatesUrl)
+    .then(function (data) {
+        return data.json();
+    })
+    .then(function(data) {
+
+
+        // List of all return data
+        console.log(data, "coordinates")
+
+     
+    
+
 
     // test lat and lon
-    var lat = '36.0726';
-    var lon = '-79.7920';
+    var lat = data[0].lat;
+    var lon = data[0].lon;
+    console.log(lat,"lat")
+    console.log(lon,"lon")
     
     var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}`
 
-    console.log(apiUrl);
+    
  
 
     fetch(apiUrl)
@@ -51,14 +70,14 @@ function weatherSearch() {
             console.log(data);
 
             // List of Current Weather Info
-            console.log(data.current)
+            // console.log(data.current)
            
-            // List of Forcast Data
-            console.log(data.daily)
-            console.log(`UVI: ${data.current.uvi}`); 
-            console.log(`TEMP: ${data.current.temp}`);
-            console.log(`WIND_SPEED: ${data.current.wind_speed}`);
-            console.log(`HUMIDITY: ${data.current.humidity}`);
+            // // List of Forcast Data
+            // console.log(data.daily)
+            // console.log(`UVI: ${data.current.uvi}`); 
+            // console.log(`TEMP: ${data.current.temp}`);
+            // console.log(`WIND_SPEED: ${data.current.wind_speed}`);
+            // console.log(`HUMIDITY: ${data.current.humidity}`);
             
             
             /*for (var i =5; i < data.length; i++) {
@@ -71,7 +90,7 @@ function weatherSearch() {
         //      return data.json();
         //  })
       
-    
+    });
         }
 
 var savedSearch = function () {
