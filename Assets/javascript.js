@@ -55,7 +55,7 @@ function weatherSearch() {
         // List of all return data
         console.log(data, "coordinates")
         document.getElementById("row").innerHTML = data[0].name;
-        // document.getElementById("five-day-forcast").innerHTML = 
+        // document.getElementById("cur-weather-container").innerHTML = data[0].temp;
 
     // test lat and lon
     var lat = data[0].lat;
