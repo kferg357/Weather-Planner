@@ -31,8 +31,9 @@ cityForm.addEventListener('submit', function(event) {
 
 function weatherSearch() {
     // var coordinates =  `https://openweathermap.org/api/geocoding-api#direct_name`
+    var cityName = $("").val();
 
-    var coordinatesUrl = `https://api.openweathermap.org/geo/1.0/direct?q=boston&appid=${API_KEY}`
+    var coordinatesUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`
     
     fetch(coordinatesUrl)
     .then(function (data) {
@@ -44,7 +45,7 @@ function weatherSearch() {
         // List of all return data
         console.log(data, "coordinates")
 
-     
+    
     
 
 
