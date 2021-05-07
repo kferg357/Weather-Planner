@@ -23,7 +23,16 @@ cityForm.addEventListener('submit', function(event) {
     // console.log("submitting data");
     
     city_search = cityInput.value;
-    // console.log(city_search)
+    if(city){
+        coordinatesUrl(city_search);
+        get5Day(city);
+        cities.unshift({city});
+        cityInputEl.value = "";
+    } else{
+        alert("Please enter a City");
+    }
+    savedSearch();
+    pastSearchButton();
 
     weatherSearch()
 });
@@ -44,10 +53,6 @@ function weatherSearch() {
 
         // List of all return data
         console.log(data, "coordinates")
-
-    
-    
-
 
     // test lat and lon
     var lat = data[0].lat;
