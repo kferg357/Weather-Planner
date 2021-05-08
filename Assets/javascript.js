@@ -64,8 +64,17 @@ function weatherSearch() {
           curWeatherContainer.append(`<h1>UV Index ${data.current.uvi}</h1>`);
           curWeatherContainer.append(`<h1>Wind Speed ${data.current.wind_speed}</h1>`);
           curWeatherContainer.append(`<h1>Humidity ${data.current.humidity}</h1>`);
-          /*for (var i =5; i < data.length; i++) {
-             }*/
+
+        
+          
+          
+        //   fivedayForcasst.append(`h2>Temperature ${data.ftemp}</h2>`);
+          
+          
+          
+          for (var i = 0; i < 5; i++) {
+              console.log(data.daily[i].temp.day)
+             }
         });
       //  fetch(forcastapiUrl)
       //  .then(function(data) {
