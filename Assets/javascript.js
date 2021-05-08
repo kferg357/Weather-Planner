@@ -24,7 +24,7 @@ cityForm.addEventListener('submit', function (event) {
   weatherSearch();
 });
 var savedSearch = function () {
-  localStorage.setItem('city', JSON.stringify(cities));
+  localStorage.getItem('city', JSON.stringify(cities));
   // localStorage.getItem()
 };
 function weatherSearch() {
@@ -37,7 +37,7 @@ function weatherSearch() {
     .then(function (data) {
       // List of all return data
       console.log(data, 'coordinates');
-      document.getElementById('city-input').innerHTML = data[0].name;
+      document.getElementById('city-input').textContent = data[0].name;
       // test lat and lon
       var lat = data[0].lat;
       var lon = data[0].lon;
@@ -60,20 +60,44 @@ function weatherSearch() {
           console.log(`HUMIDITY: ${data.current.humidity}`);
           var curWeatherContainer = $('#cur-weather-container');
           console.log('curWeatherContainer:', curWeatherContainer);
-          curWeatherContainer.append(`<h1>Temperature ${data.current.temp}</h1>`);
+          curWeatherContainer.append(`<h1>Temperature ${data.current.temp}</h1>`); 
           curWeatherContainer.append(`<h1>UV Index ${data.current.uvi}</h1>`);
-          curWeatherContainer.append(`<h1>Wind Speed ${data.current.wind_speed}</h1>`);
           curWeatherContainer.append(`<h1>Humidity ${data.current.humidity}</h1>`);
+          curWeatherContainer.append(`<h1>Wind Speed ${data.current.wind_speed}</h1>`);
 
         
           
           
         //   fivedayForcasst.append(`h2>Temperature ${data.ftemp}</h2>`);
           
+        //    var = forcastContanter = $('#fiveday-container');
           
-          
+    function k2f(K) {
+        return Math.floor((K - 273.15) *1.8 +32);
+    }
+
           for (var i = 0; i < 5; i++) {
-              console.log(data.daily[i].temp.day)
+              console.log(data.daily[i].temp.day);
+              console.log(data.daily[i].wind_speed)
+              console.log(data.daily[i].uvi)
+              console.log(data.daily[i].humidity)
+               var temp = `<div class= "card">
+            <p>Temperature ${data.daily[i].temp.day}</p>
+            <p>UV Index ${data.daily[i].uvi}</p>
+            <p>Wind Speed ${data.daily[i].wind_speed}</p>
+            <p>Humidtiy ${data.daily[i].humidity}</p>
+            </div>`
+           
+            var forecastContainer = $("#fiveday-container");
+            forecastContainer.append(temp)
+            //  forecastContainer.append(`<p>Temperature ${data.daily[i].temp.day}</p>`);
+            //  forecastContainer.append(`<p>UV Index ${data.daily[i].wind_speed}</p>`);
+            //  forecastContainer.append(`<p>Wind Speed ${data.daily[i].uvi}</py>`);
+            //  forecastContainer.append(`<p>Humidity ${data.daily[i].humidity}</p>`);
+
+
+             
+
              }
         });
       //  fetch(forcastapiUrl)
