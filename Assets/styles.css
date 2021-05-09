@@ -34,6 +34,16 @@ content{
     
 }
 
+
+.namecities{
+    width: 100%;
+    display: block;
+    border: 1px solid blue;
+    height: 40px;
+    margin: 10px 0px 10px 0px;
+}
+
+
 #fiveday-container{
     justify-content: center;
     margin: 10px;

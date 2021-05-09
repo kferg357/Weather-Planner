@@ -9,32 +9,15 @@ var pastSearchButton = document.querySelector('#past-search-buttons');
 var API_KEY = '10e1f68a65cde5b6f69c3c18e862cb60';
 var city_search = '';
 var requestUrl = `https://openweathermap.org/api/geocoding-api#direct_name`;
-
+var citybuttons = $("#city-buttons");
 cityForm.addEventListener('submit', function (event) {
   event.preventDefault();
-city_search = cityInput.value;
+  city_search = cityInput.value;
 
 
-  
+
   weatherSearch();
 });
-function renderSearchHistory() {
-  historyEl.innerHTML = "";
-  for (let i=0; i<searchHistory.length; i++) {
-      const historyItem = document.createElement("input");
-      // <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com"></input>
-      historyItem.setAttribute("type","text");
-      historyItem.setAttribute("readonly",true);
-      historyItem.setAttribute("class", "form-control d-block bg-white");
-      historyItem.setAttribute("value", searchHistory[i]);
-      historyItem.addEventListener("click",function() {
-          getWeather(historyItem.value);
-      })
-      historyEl.append(historyItem);
-  }
-}
-
-
 
 
 
@@ -45,6 +28,12 @@ var savedSearch = function () {
 function weatherSearch() {
   var cityName = $('#city').val();
   var coordinatesUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`;
+  var nameDiv = $("<button>");
+  nameDiv.append(cityName);
+  nameDiv.addClass("namecities");
+  citybuttons.append(nameDiv);
+  
+
   fetch(coordinatesUrl)
     .then(function (data) {
       return data.json();
@@ -58,62 +47,64 @@ function weatherSearch() {
       var lon = data[0].lon;
       console.log(lat, 'lat');
       console.log(lon, 'lon');
-      var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+      var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`;
       fetch(apiUrl)
         .then(function (data) {
+          console.log(data.json)
+
           return data.json();
         })
         .then(function (weatherdata) {
           // List of all return data
-          
+
           // List of Current Weather Info
           // console.log(data.current)
-          
+
           var curWeatherContainer = $('#cur-forecast');
           var weatherDiv = $("<div>");
           weatherDiv.addClass("weatherstats");
           weatherDiv.append(`<h3>${data[0].name}</h3>`);
           console.log('curWeatherContainer:', curWeatherContainer);
-          weatherDiv.append(`<content>Temperature ${weatherdata.current.temp}</content>`); 
+          weatherDiv.append(`<content>Temperature ${weatherdata.current.temp}</content>`);
           weatherDiv.append(`<content>UV Index ${weatherdata.current.uvi}</content>`);
           weatherDiv.append(`<content>Humidity ${weatherdata.current.humidity}</content>`);
           weatherDiv.append(`<content>Wind Speed ${weatherdata.current.wind_speed}</content>`);
           curWeatherContainer.append(weatherDiv);
+
+
+
+
+
         
-          
-          
-        //   fivedayForcasst.append(`h2>Temperature ${data.ftemp}</h2>`);
-          
-        //    var = forcastContanter = $('#fiveday-container');
-          
-    function k2f(K) {
-        return Math.floor((K - 273.15) *1.8 +32);
-    }
+          //   fivedayForcasst.append(`h2>Temperature ${data.ftemp}</h2>`);
+          // function k2f(K) {
+          //   return Math.floor((K - 273.15) * 1.8 + 32);
+          // }
 
           for (var i = 0; i < 5; i++) {
-              console.log(weatherdata.daily[i].temp.day);
-              console.log(weatherdata.daily[i].wind_speed)
-              console.log(weatherdata.daily[i].uvi)
-              console.log(weatherdata.daily[i].humidity)
-               var temp = `<div class= "c" >
+            console.log(weatherdata.daily[i].temp.day);
+            console.log(weatherdata.daily[i].wind_speed)
+            console.log(weatherdata.daily[i].uvi)
+            console.log(weatherdata.daily[i].humidity)
+            var temp = `<div class= "c" >
             <p>Temperature ${weatherdata.daily[i].temp.day}</p>
             <p>UV Index ${weatherdata.daily[i].uvi}</p>
             <p>Wind Speed ${weatherdata.daily[i].wind_speed}</p>
             <p>Humidtiy ${weatherdata.daily[i].humidity}</p>
             </div>`
-                
+
             var forecastContainer = $("#fiveday-container");
-            forecastContainer.append(temp) 
+            forecastContainer.append(temp)
             //  forecastContainer.append(`<p>Temperature ${data.daily[i].temp.day}</p>`);
             //  forecastContainer.append(`<p>UV Index ${data.daily[i].wind_speed}</p>`);
             //  forecastContainer.append(`<p>Wind Speed ${data.daily[i].uvi}</py>`);
             //  forecastContainer.append(`<p>Humidity ${data.daily[i].humidity}</p>`);
 
 
-            
-             
 
-             }
+
+
+          }
         });
       //  fetch(forcastapiUrl)
       //  .then(function(data) {
@@ -121,14 +112,14 @@ function weatherSearch() {
       //  })
     });
 
-// this line 
-// localStorage.setItem();
-    
-//     let temp = localStorage.getItem(id);
-//     console.log(temp, 'TEMP');
-//     console.log(localStorage, 'localStorage')
+  // this line 
+  // localStorage.setItem();
 
-  }
+  //     let temp = localStorage.getItem(id);
+  //     console.log(temp, 'TEMP');
+  //     console.log(localStorage, 'localStorage')
+
+}
 
 
 
