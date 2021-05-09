@@ -18,7 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
         integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
         crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="./Assets/styles.css">
+    <link rel="stylesheet" href="./Assets/styles.css">
 
     <title>Weather Dashboard</title>
 </head>
@@ -29,28 +29,31 @@
     </div>
 
     <div class="container-fluid"> </div>
-    <div class="row"> </div>
-    <div class="col-12 col-md-3 p-2 search-column" id="content"> </div> 
-        <form class="form-inline" id="city-search-form">
-           <h2>Search for a City</h2>
-            <input id="city" type="text" autofocus="true" class="form-input"/>
-            <button class="btn btn-primary" type="submit">Search</button>
-       </form>
-     <div class="past-search border" id="past-search-buttons"></div>
-   
- 
-   
-  
 
-    <div class="col-12 col-md-9">
-        <div class="row-border selected-city" id="cur-forecast">
-            <div class="col-12">
-            <h3 id="city-input"></h3>
-            <div class="cur-weather-container" class="list-section"></div>
+    <div class="col-12 col-md-3 p-2 search-column" id="content"> </div>
+    <form class="form-inline" id="city-search-form">
+        <h2>Search for a City</h2>
+        <input id="city" type="text" autofocus="true" class="form-input">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <div class="past-search border" id="past-search-buttons"></div>
+    <div class="row">
+        <div class="col-3" id="city-buttons"></div>
+        <div class="col-9 col-md-9">
+            <div class="row-border selected-city" id="cur-forecast">
+                <div class="col-12">
+                    <h3 id="city-input"></h3>
+                    <div class="cur-weather-container" class="list-section"></div>
+                </div>
+            </div>
         </div>
+
+
+
+
+
     </div>
-    </div>
-    <div class="row border"  id="five-day-forecast">
+    <div class="row border" id="five-day-forecast">
         <h2 class="col-12" id="forecast"></h2>
         <div class="d-flex" id="fiveday-container"></div>
         <div id="fiveday-container"></div>
@@ -59,15 +62,9 @@
     </div>
 
 
-    
+
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="./Assets/javascript.js"></script>
 </body>
 
 </html>
-
-
-
-
-
-

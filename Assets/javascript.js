@@ -31,7 +31,7 @@ function weatherSearch() {
     .then(function (data) {
       // List of all return data
       console.log(data, 'coordinates');
-      document.getElementById('city-input').textContent = data[0].name;
+      // document.getElementById('city-input').textContent = data[0].name;
       // test lat and lon
       var lat = data[0].lat;
       var lon = data[0].lon;
@@ -42,23 +42,22 @@ function weatherSearch() {
         .then(function (data) {
           return data.json();
         })
-        .then(function (data) {
+        .then(function (weatherdata) {
           // List of all return data
-          console.log(data.timezone);
+          
           // List of Current Weather Info
           // console.log(data.current)
-          console.log(data.daily);
-          console.log(`UVI: ${data.current.uvi}`);
-          console.log(`TEMP: ${data.current.temp}`);
-          console.log(`WIND_SPEED: ${data.current.wind_speed}`);
-          console.log(`HUMIDITY: ${data.current.humidity}`);
-          var curWeatherContainer = $('#content');
+          
+          var curWeatherContainer = $('#cur-forecast');
+          var weatherDiv = $("<div>");
+          weatherDiv.addClass("weatherstats");
+          weatherDiv.append(`<h3>${data[0].name}</h3>`);
           console.log('curWeatherContainer:', curWeatherContainer);
-          curWeatherContainer.append(`<content>Temperature ${data.current.temp}</content>`); 
-          curWeatherContainer.append(`<content>UV Index ${data.current.uvi}</content>`);
-          curWeatherContainer.append(`<content>Humidity ${data.current.humidity}</content>`);
-          curWeatherContainer.append(`<content>Wind Speed ${data.current.wind_speed}</content>`);
-
+          weatherDiv.append(`<content>Temperature ${weatherdata.current.temp}</content>`); 
+          weatherDiv.append(`<content>UV Index ${weatherdata.current.uvi}</content>`);
+          weatherDiv.append(`<content>Humidity ${weatherdata.current.humidity}</content>`);
+          weatherDiv.append(`<content>Wind Speed ${weatherdata.current.wind_speed}</content>`);
+          curWeatherContainer.append(weatherDiv);
         
           
           
@@ -71,15 +70,15 @@ function weatherSearch() {
     }
 
           for (var i = 0; i < 5; i++) {
-              console.log(data.daily[i].temp.day);
-              console.log(data.daily[i].wind_speed)
-              console.log(data.daily[i].uvi)
-              console.log(data.daily[i].humidity)
+              console.log(weatherdata.daily[i].temp.day);
+              console.log(weatherdata.daily[i].wind_speed)
+              console.log(weatherdata.daily[i].uvi)
+              console.log(weatherdata.daily[i].humidity)
                var temp = `<div class= "c" >
-            <p>Temperature ${data.daily[i].temp.day}</p>
-            <p>UV Index ${data.daily[i].uvi}</p>
-            <p>Wind Speed ${data.daily[i].wind_speed}</p>
-            <p>Humidtiy ${data.daily[i].humidity}</p>
+            <p>Temperature ${weatherdata.daily[i].temp.day}</p>
+            <p>UV Index ${weatherdata.daily[i].uvi}</p>
+            <p>Wind Speed ${weatherdata.daily[i].wind_speed}</p>
+            <p>Humidtiy ${weatherdata.daily[i].humidity}</p>
             </div>`
                 
             var forecastContainer = $("#fiveday-container");
