@@ -52,7 +52,7 @@ function weatherSearch() {
           console.log(`TEMP: ${data.current.temp}`);
           console.log(`WIND_SPEED: ${data.current.wind_speed}`);
           console.log(`HUMIDITY: ${data.current.humidity}`);
-          var curWeatherContainer = $('#cur-weather-container');
+          var curWeatherContainer = $('#content');
           console.log('curWeatherContainer:', curWeatherContainer);
           curWeatherContainer.append(`<content>Temperature ${data.current.temp}</content>`); 
           curWeatherContainer.append(`<content>UV Index ${data.current.uvi}</content>`);
@@ -75,7 +75,7 @@ function weatherSearch() {
               console.log(data.daily[i].wind_speed)
               console.log(data.daily[i].uvi)
               console.log(data.daily[i].humidity)
-               var temp = `<div class= "card" >
+               var temp = `<div class= "c" >
             <p>Temperature ${data.daily[i].temp.day}</p>
             <p>UV Index ${data.daily[i].uvi}</p>
             <p>Wind Speed ${data.daily[i].wind_speed}</p>
