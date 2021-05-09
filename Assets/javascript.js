@@ -60,10 +60,10 @@ function weatherSearch() {
           console.log(`HUMIDITY: ${data.current.humidity}`);
           var curWeatherContainer = $('#cur-weather-container');
           console.log('curWeatherContainer:', curWeatherContainer);
-          curWeatherContainer.append(`<h1>Temperature ${data.current.temp}</h1>`); 
-          curWeatherContainer.append(`<h1>UV Index ${data.current.uvi}</h1>`);
-          curWeatherContainer.append(`<h1>Humidity ${data.current.humidity}</h1>`);
-          curWeatherContainer.append(`<h1>Wind Speed ${data.current.wind_speed}</h1>`);
+          curWeatherContainer.append(`<content>Temperature ${data.current.temp}</content>`); 
+          curWeatherContainer.append(`<content>UV Index ${data.current.uvi}</content>`);
+          curWeatherContainer.append(`<content>Humidity ${data.current.humidity}</content>`);
+          curWeatherContainer.append(`<content>Wind Speed ${data.current.wind_speed}</content>`);
 
         
           
@@ -81,21 +81,22 @@ function weatherSearch() {
               console.log(data.daily[i].wind_speed)
               console.log(data.daily[i].uvi)
               console.log(data.daily[i].humidity)
-               var temp = `<div class= "card">
+               var temp = `<div class= "card" >
             <p>Temperature ${data.daily[i].temp.day}</p>
             <p>UV Index ${data.daily[i].uvi}</p>
             <p>Wind Speed ${data.daily[i].wind_speed}</p>
             <p>Humidtiy ${data.daily[i].humidity}</p>
             </div>`
-           
+                
             var forecastContainer = $("#fiveday-container");
-            forecastContainer.append(temp)
+            forecastContainer.append(temp) 
             //  forecastContainer.append(`<p>Temperature ${data.daily[i].temp.day}</p>`);
             //  forecastContainer.append(`<p>UV Index ${data.daily[i].wind_speed}</p>`);
             //  forecastContainer.append(`<p>Wind Speed ${data.daily[i].uvi}</py>`);
             //  forecastContainer.append(`<p>Humidity ${data.daily[i].humidity}</p>`);
 
 
+            
              
 
              }
@@ -105,7 +106,18 @@ function weatherSearch() {
       //      return data.json();
       //  })
     });
-}
+
+// this line 
+localStorage.setItem(id, userData);
+    
+    let temp = localStorage.getItem(id);
+    console.log(temp, 'TEMP');
+    console.log(localStorage, 'localStorage')
+
+  }
+
+
+
 console.log('city');
 // fetch(requestUrl)
 // $(document).ready(function() {
