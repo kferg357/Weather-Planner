@@ -9,18 +9,12 @@ var pastSearchButton = document.querySelector('#past-search-buttons');
 var API_KEY = '10e1f68a65cde5b6f69c3c18e862cb60';
 var city_search = '';
 var requestUrl = `https://openweathermap.org/api/geocoding-api#direct_name`;
+
 cityForm.addEventListener('submit', function (event) {
   event.preventDefault();
   // console.log("submitting data");
   city_search = cityInput.value;
-  // if(city){
-  //     coordinatesUrl(city_search);
-  //     get5Day(city);
-  //     cities.unshift({city});
-  //     cityInputEl.value = "";
-  // } else{
-  //     alert("Please enter a City");
-  // }
+  
   weatherSearch();
 });
 var savedSearch = function () {
