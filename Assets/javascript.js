@@ -12,11 +12,32 @@ var requestUrl = `https://openweathermap.org/api/geocoding-api#direct_name`;
 
 cityForm.addEventListener('submit', function (event) {
   event.preventDefault();
-  // console.log("submitting data");
-  city_search = cityInput.value;
+city_search = cityInput.value;
+
+
   
   weatherSearch();
 });
+function renderSearchHistory() {
+  historyEl.innerHTML = "";
+  for (let i=0; i<searchHistory.length; i++) {
+      const historyItem = document.createElement("input");
+      // <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com"></input>
+      historyItem.setAttribute("type","text");
+      historyItem.setAttribute("readonly",true);
+      historyItem.setAttribute("class", "form-control d-block bg-white");
+      historyItem.setAttribute("value", searchHistory[i]);
+      historyItem.addEventListener("click",function() {
+          getWeather(historyItem.value);
+      })
+      historyEl.append(historyItem);
+  }
+}
+
+
+
+
+
 var savedSearch = function () {
   localStorage.getItem('city', JSON.stringify(cities));
   // localStorage.getItem()
@@ -101,11 +122,11 @@ function weatherSearch() {
     });
 
 // this line 
-localStorage.setItem(id, userData);
+// localStorage.setItem();
     
-    let temp = localStorage.getItem(id);
-    console.log(temp, 'TEMP');
-    console.log(localStorage, 'localStorage')
+//     let temp = localStorage.getItem(id);
+//     console.log(temp, 'TEMP');
+//     console.log(localStorage, 'localStorage')
 
   }
 
