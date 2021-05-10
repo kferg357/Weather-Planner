@@ -32,7 +32,7 @@ function weatherSearch() {
   nameDiv.append(cityName);
   nameDiv.addClass("namecities");
   citybuttons.append(nameDiv);
-  
+
 
   fetch(coordinatesUrl)
     .then(function (data) {
@@ -55,15 +55,23 @@ function weatherSearch() {
           return data.json();
         })
         .then(function (weatherdata) {
-          // List of all return data
-
-          // List of Current Weather Info
-          // console.log(data.current)
+          
+          // var currentDay = $('#time-display');
+          // $(".lead").text(currentDay);
+          
+          // function displayTime() {
+          //   var rightNow = moment().format('dddd, MMM DD, YYYY, h:mm');
+          //   currentDay.text(rightNow);
+          //   currentDay.append("time-display");
+          // }
+          // setInterval(displayTime, 1000);
 
           var curWeatherContainer = $('#cur-forecast');
           var weatherDiv = $("<div>");
           weatherDiv.addClass("weatherstats");
           weatherDiv.append(`<h3>${data[0].name}</h3>`);
+        
+          
           console.log('curWeatherContainer:', curWeatherContainer);
           weatherDiv.append(`<content>Temperature ${weatherdata.current.temp}</content>`);
           weatherDiv.append(`<content>UV Index ${weatherdata.current.uvi}</content>`);
@@ -75,7 +83,7 @@ function weatherSearch() {
 
 
 
-        
+
           //   fivedayForcasst.append(`h2>Temperature ${data.ftemp}</h2>`);
           // function k2f(K) {
           //   return Math.floor((K - 273.15) * 1.8 + 32);
