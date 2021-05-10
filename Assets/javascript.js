@@ -10,9 +10,17 @@ var API_KEY = '10e1f68a65cde5b6f69c3c18e862cb60';
 var city_search = '';
 var requestUrl = `https://openweathermap.org/api/geocoding-api#direct_name`;
 var citybuttons = $("#city-buttons");
+var current_timestamp = new Date();
+var today = moment().format("dddd, MMMM Do YYYY");
+console.log(`today is ${today}`);
+var tomorrow = moment().add(1, 'day');
+console.log(`tomorrow is ${tomorrow}`);
+
+
 cityForm.addEventListener('submit', function (event) {
   event.preventDefault();
   city_search = cityInput.value;
+  /*
   cityForm.addEventListener('submit', function (event) {
      event.preventDefault();
      city_search = cityInput.value;
@@ -20,6 +28,8 @@ cityForm.addEventListener('submit', function (event) {
    
      weatherSearch();
    });
+   */
+
 
 
   weatherSearch();
@@ -34,6 +44,13 @@ var savedSearch = function () {
 function weatherSearch() {
   var cityName = $('#city').val();
   var coordinatesUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`;
+
+
+  // Clear out any old data on the DOM
+  // //
+  forecastContainer.innerHTML = ""
+  pastSearchButton.innerHTML = ""
+  
   var nameDiv = $("<button>");
   nameDiv.append(cityName);
   nameDiv.addClass("namecities");
@@ -51,24 +68,26 @@ function weatherSearch() {
       // test lat and lon
       var lat = data[0].lat;
       var lon = data[0].lon;
+      
       console.log(lat, 'lat');
       console.log(lon, 'lon');
       var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`;
       fetch(apiUrl)
         .then(function (data) {
           console.log(data.json)
+          
 
           return data.json();
         })
         .then(function (weatherdata) {
           
-          
+           
 
           var curWeatherContainer = $('#cur-forecast');
           var weatherDiv = $("<div>");
           weatherDiv.addClass("weatherstats");
           weatherDiv.append(`<h3>${data[0].name}</h3>`);
-        
+          weatherDiv.append(`<h3>${today}</h3>`);                  
           
           console.log('curWeatherContainer:', curWeatherContainer);
           weatherDiv.append(`<content>Temperature ${weatherdata.current.temp}</content>`);
@@ -88,11 +107,13 @@ function weatherSearch() {
           // }
 
           for (var i = 0; i < 5; i++) {
+            console.log(moment().add(i + 1, 'day').format('dddd, MMMM Do'))
             console.log(weatherdata.daily[i].temp.day);
             console.log(weatherdata.daily[i].wind_speed)
             console.log(weatherdata.daily[i].uvi)
             console.log(weatherdata.daily[i].humidity)
             var temp = `<div class= "c" >
+            <p>Date ${moment().add(i + 1, 'day').format('dddd, MMMM Do')}</p>
             <p>Temperature ${weatherdata.daily[i].temp.day}</p>
             <p>UV Index ${weatherdata.daily[i].uvi}</p>
             <p>Wind Speed ${weatherdata.daily[i].wind_speed}</p>
@@ -130,17 +151,3 @@ function weatherSearch() {
 
 
 console.log('city');
-// fetch(requestUrl)
-// $(document).ready(function() {
-//   $.ajax({
-//     url: ,
-//     type: "GET",
-//     success: function(result) {
-//       console.log(result);
-//     },
-//     error: function(error) {
-//       console.log(error);
-//     }
-//   });
-// });
-// 4994e9dae0cfd4d7106550fa9a769e96

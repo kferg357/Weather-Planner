@@ -6,6 +6,11 @@ h1{
     color: white;
 }
    
+h3{
+    display: inline;
+    margin-left: 10px;
+}
+
 .search-column{
     background-color:	#D3D3D3;
 }
@@ -18,13 +23,17 @@ h1{
 content{
     font-size: 1;
     display: block;
+    margin: 10px 0px 10px 0px;
 }
 
 .weatherstats{
     align-content: space-between;
     width: 100%;
     border: 3px solid black;
+    margin: 10px 0px 10px 0px;
 }
+
+
 
 .c{
     margin: 10px;
