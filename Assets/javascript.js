@@ -13,7 +13,13 @@ var citybuttons = $("#city-buttons");
 cityForm.addEventListener('submit', function (event) {
   event.preventDefault();
   city_search = cityInput.value;
-
+  cityForm.addEventListener('submit', function (event) {
+     event.preventDefault();
+     city_search = cityInput.value;
+     console.log("city_search now storing: ", city_search)
+   
+     weatherSearch();
+   });
 
 
   weatherSearch();
@@ -56,15 +62,7 @@ function weatherSearch() {
         })
         .then(function (weatherdata) {
           
-          // var currentDay = $('#time-display');
-          // $(".lead").text(currentDay);
           
-          // function displayTime() {
-          //   var rightNow = moment().format('dddd, MMM DD, YYYY, h:mm');
-          //   currentDay.text(rightNow);
-          //   currentDay.append("time-display");
-          // }
-          // setInterval(displayTime, 1000);
 
           var curWeatherContainer = $('#cur-forecast');
           var weatherDiv = $("<div>");
