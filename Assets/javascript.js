@@ -107,10 +107,21 @@ function weatherSearch() {
             console.log(weatherdata.daily[i].wind_speed);
             console.log(weatherdata.daily[i].uvi);
             console.log(weatherdata.daily[i].humidity);
+            console.log("http://openweathermap.org/img/w/" + weatherdata.daily[i].weather[0].icon + ".png");
+var waetherIcon = document.createElement ("img");
+waetherIcon.setAttribute("src" , "http://openweathermap.org/img/w/" + weatherdata.daily[i].weather[0].icon + ".png");
+waetherIcon.setAttribute("alt" , weatherdata.daily[i].weather[0].description);
+weatherDiv[i].append(waetherIcon);
+// weatherDiv[i],append(waetherIcon);
+
+
+
             var temp = `<div class= "c" >
             <p>Date ${moment()
               .add(i + 1, 'day')
               .format('dddd, MMMM Do')}</p>
+
+              
             <p>Temperature ${weatherdata.daily[i].temp.day}</p>
             <p>UV Index ${weatherdata.daily[i].uvi}</p>
             <p>Wind Speed ${weatherdata.daily[i].wind_speed}</p>
@@ -118,6 +129,7 @@ function weatherSearch() {
             </div>`;
             var forecastContainer = $('#fiveday-container');
             forecastContainer.append(temp);
+            
             //  forecastContainer.append(`<p>Temperature ${data.daily[i].temp.day}</p>`);
             //  forecastContainer.append(`<p>UV Index ${data.daily[i].wind_speed}</p>`);
             //  forecastContainer.append(`<p>Wind Speed ${data.daily[i].uvi}</py>`);
