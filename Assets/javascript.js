@@ -39,13 +39,13 @@ cityForm.addEventListener('submit', function (event) {
 
 
 var savedSearch = function (city_search) {
- var nameof = localStorage.setItem (city_search,JSON.stringify("Greensboro"))
+ var nameof = localStorage.setItem(city_search,JSON.stringify("Greensboro"))
   console.log(nameof)
 }
 
 
 function getcities() { 
- var test = JSON.parse (localStorage.getItem('city'))
+ var test = JSON.parse (localStorage.getItem('city_search'))
  console.log(test)
  }
 
