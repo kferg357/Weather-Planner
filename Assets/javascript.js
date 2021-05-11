@@ -1,6 +1,5 @@
 var cityInput = document.querySelector('#city');
 var cityForm = document.querySelector('#city-search-form');
-var pastSearchButton = document.querySelector('#past-search-button');
 var weatherContainer = document.querySelector('#cur-weather-container');
 var citySearchInput = document.querySelector('city-input');
 var forcastTitle = document.querySelector('#forecast');
@@ -15,6 +14,8 @@ var today = moment().format("dddd, MMMM Do YYYY");
 console.log(`today is ${today}`);
 var tomorrow = moment().add(1, 'day');
 console.log(`tomorrow is ${tomorrow}`);
+getcities()
+
 
 
 cityForm.addEventListener('submit', function (event) {
@@ -37,10 +38,17 @@ cityForm.addEventListener('submit', function (event) {
 
 
 
-var savedSearch = function () {
-  localStorage.getItem('city', JSON.stringify(cities));
-  // localStorage.getItem()
-};
+var savedSearch = function (city_search) {
+ var nameof = localStorage.setItem (city_search,JSON.stringify("Greensboro"))
+  console.log(nameof)
+}
+
+
+function getcities() { 
+ var test = JSON.parse (localStorage.getItem('city'))
+ console.log(test)
+ }
+
 function weatherSearch() {
   var cityName = $('#city').val();
   var coordinatesUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`;
@@ -82,7 +90,7 @@ function weatherSearch() {
         .then(function (weatherdata) {
           
            
-
+          $('#cur-forecast').empty()
           var curWeatherContainer = $('#cur-forecast');
           var weatherDiv = $("<div>");
           weatherDiv.addClass("weatherstats");
@@ -97,7 +105,7 @@ function weatherSearch() {
           curWeatherContainer.append(weatherDiv);
 
 
-
+          
 
 
 
@@ -150,4 +158,4 @@ function weatherSearch() {
 
 
 
-console.log('city');
+

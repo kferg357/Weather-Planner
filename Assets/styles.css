@@ -7,7 +7,7 @@ h1{
 }
    
 h3{
-    display: inline;
+    display: block;
     margin-left: 10px;
 }
 
@@ -61,6 +61,7 @@ content{
 #content{
     display: flex;
     justify-content: center;
+    margin-left: 10px;
     
 }
 
