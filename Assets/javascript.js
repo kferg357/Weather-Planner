@@ -18,15 +18,8 @@ getcities();
 cityForm.addEventListener('submit', function (event) {
   event.preventDefault();
   city_search = cityInput.value;
-  /*
-  cityForm.addEventListener('submit', function (event) {
-     event.preventDefault();
-     city_search = cityInput.value;
-     console.log("city_search now storing: ", city_search)
-     weatherSearch();
-   });
-   */
-  weatherSearch();
+
+  weatherSearch(cityInput.value);
 });
 var savedSearch = function (city_search) {
   var priorSearches = getcities() || [];
@@ -43,6 +36,7 @@ function addSearchButton(cityName) {
   nameDiv.append(cityName);
   nameDiv.addClass('namecities');
   citybuttons.append(nameDiv);
+
 }
 function addOldSearchButtonsOnPageLoad() {
   citiesSearched = getcities();
@@ -52,12 +46,16 @@ function addOldSearchButtonsOnPageLoad() {
     }
   }
 }
+$('body').on('click', 'button.namecities', function (e) {
+  console.log(e.target.textContent)
+  weatherSearch(e.target.textContent);
+}
+)
 addOldSearchButtonsOnPageLoad();
-function weatherSearch() {
-  var cityName = $('#city').val();
+function weatherSearch(cityName) {
+
   var coordinatesUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`;
-  // Clear out any old data on the DOM
-  // //
+
   forecastContainer.innerHTML = '';
   pastSearchButton.innerHTML = '';
   addSearchButton(cityName);
@@ -67,18 +65,14 @@ function weatherSearch() {
       return data.json();
     })
     .then(function (data) {
-      // List of all return data
-      console.log(data, 'coordinates');
-      // document.getElementById('city-input').textContent = data[0].name;
-      // test lat and lon
+
       var lat = data[0].lat;
       var lon = data[0].lon;
-      console.log(lat, 'lat');
-      console.log(lon, 'lon');
+
       var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`;
       fetch(apiUrl)
         .then(function (data) {
-          console.log(data.json);
+          // console.log(data.json);
           return data.json();
         })
         .then(function (weatherdata) {
@@ -89,61 +83,45 @@ function weatherSearch() {
           weatherDiv.append(`<h3>${data[0].name}</h3>`);
           weatherDiv.append(`<h3>${today}</h3>`);
           console.log('curWeatherContainer:', curWeatherContainer);
-          weatherDiv.append(`<content>Temperature ${weatherdata.current.temp}</content>`);
+          weatherDiv.append(`<content>Temperature ${weatherdata.current.temp}\u00B0 F </content>`);
           weatherDiv.append(`<content>UV Index ${weatherdata.current.uvi}</content>`);
-          weatherDiv.append(`<content>Humidity ${weatherdata.current.humidity}</content>`);
-          weatherDiv.append(`<content>Wind Speed ${weatherdata.current.wind_speed}</content>`);
+          weatherDiv.append(`<content>Humidity ${weatherdata.current.humidity} \% </content>`);
+          weatherDiv.append(`<content>Wind Speed ${weatherdata.current.wind_speed} mhp</content>`);
+          weatherDiv.append(`<img src = "http://openweathermap.org/img/w/${weatherdata.current.weather[0].icon}.png"></img>`)
+
+
           curWeatherContainer.append(weatherDiv);
 
 
-          
+
           for (var i = 0; i < 5; i++) {
-            console.log(
-              moment()
-                .add(i + 1, 'day')
-                .format('dddd, MMMM Do')
-            );
-            console.log(weatherdata.daily[i].temp.day);
-            console.log(weatherdata.daily[i].wind_speed);
-            console.log(weatherdata.daily[i].uvi);
-            console.log(weatherdata.daily[i].humidity);
-            console.log("http://openweathermap.org/img/w/" + weatherdata.daily[i].weather[0].icon + ".png");
-var waetherIcon = document.createElement ("img");
-waetherIcon.setAttribute("src" , "http://openweathermap.org/img/w/" + weatherdata.daily[i].weather[0].icon + ".png");
-waetherIcon.setAttribute("alt" , weatherdata.daily[i].weather[0].description);
-weatherDiv[i].append(waetherIcon);
-// weatherDiv[i],append(waetherIcon);
+
+            var waetherIcon = document.createElement("img");
+            waetherIcon.setAttribute("src", "http://openweathermap.org/img/w/" + weatherdata.daily[i].weather[0].icon + ".png");
+            waetherIcon.setAttribute("alt", weatherdata.daily[i].weather[0].description);
+
+
 
 
 
             var temp = `<div class= "c" >
             <p>Date ${moment()
-              .add(i + 1, 'day')
-              .format('dddd, MMMM Do')}</p>
+                .add(i + 1, 'day')
+                .format('dddd, MMMM Do')}</p>
 
-              
-            <p>Temperature ${weatherdata.daily[i].temp.day}</p>
+                <img src ="http://openweathermap.org/img/w/${weatherdata.daily[i].weather[0].icon}.png"></img>
+
+            <p>Temperature ${weatherdata.daily[i].temp.day}\u00B0 F</p>
             <p>UV Index ${weatherdata.daily[i].uvi}</p>
-            <p>Wind Speed ${weatherdata.daily[i].wind_speed}</p>
-            <p>Humidtiy ${weatherdata.daily[i].humidity}</p>
+            <p>Wind Speed ${weatherdata.daily[i].wind_speed} mhp</p>
+            <p>Humidtiy ${weatherdata.daily[i].humidity}\%</p>
             </div>`;
             var forecastContainer = $('#fiveday-container');
             forecastContainer.append(temp);
-            
-            //  forecastContainer.append(`<p>Temperature ${data.daily[i].temp.day}</p>`);
-            //  forecastContainer.append(`<p>UV Index ${data.daily[i].wind_speed}</p>`);
-            //  forecastContainer.append(`<p>Wind Speed ${data.daily[i].uvi}</py>`);
-            //  forecastContainer.append(`<p>Humidity ${data.daily[i].humidity}</p>`);
+
           }
         });
-      //  fetch(forcastapiUrl)
-      //  .then(function(data) {
-      //      return data.json();
-      //  })
+
     });
-  // this line
-  // localStorage.setItem();
-  //     let temp = localStorage.getItem(id);
-  //     console.log(temp, 'TEMP');
-  //     console.log(localStorage, 'localStorage')
+
 }
