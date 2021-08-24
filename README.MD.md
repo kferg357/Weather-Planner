@@ -1,3 +1,4 @@
+
 README.MD
 
 ## User Story
@@ -23,5 +24,5 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
-
+![fitness tracker add exercise](https://user-images.githubusercontent.com/79925523/130669000-2574eca9-8850-4f71-b290-949e9e43249f.PNG)
 
