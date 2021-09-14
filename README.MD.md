@@ -1,3 +1,4 @@
+
 README.MD
 
 ## User Story
@@ -24,4 +25,4 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
 
-
+![WEATHER DASHBOARD](https://user-images.githubusercontent.com/79925523/133290378-211e786c-9eed-470f-a4e1-ce26f37e758c.PNG)
